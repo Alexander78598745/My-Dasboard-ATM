@@ -1,0 +1,21 @@
+{
+  "name": "ATM Hub - Centro de Entrenadores",
+  "short_name": "ATM Hub",
+  "description": "Dashboard centralizado para el cuerpo técnico del Atlético de Madrid",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#0f172a",
+  "theme_color": "#CB3524",
+  "icons": [
+    {
+      "src": "Atletico_Madrid.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "Atletico_Madrid.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
