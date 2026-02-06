@@ -115,7 +115,7 @@
             font-weight: 400;
         }
 
-        /* Botones Header (Tema + Instalar) */
+        /* Botones Header */
         .header-buttons {
             position: absolute;
             top: 20px;
@@ -142,9 +142,8 @@
             box-shadow: 0 4px 12px var(--shadow-color);
         }
 
-        /* Botón Instalar PWA (Oculto por defecto) */
         #install-btn {
-            display: none; /* Se muestra con JS */
+            display: none;
             padding: 0 20px;
             border-radius: 30px;
             font-weight: 700;
@@ -235,7 +234,7 @@
         .quote-author { font-size: 0.9rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 1px; font-weight: 700; }
         .quote-icon { font-size: 2rem; color: rgba(203, 53, 36, 0.2); margin-bottom: 10px; }
 
-        /* --- APPS --- */
+        /* --- APPS GRID --- */
         .app-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -265,10 +264,14 @@
             transform-style: preserve-3d;
         }
         .card:hover { border-color: var(--atm-red); box-shadow: 0 25px 50px -12px var(--shadow-color); }
+        
+        /* Retrasos de animación en cascada */
         .card:nth-child(1) { animation-delay: 0.3s; }
         .card:nth-child(2) { animation-delay: 0.4s; }
         .card:nth-child(3) { animation-delay: 0.5s; }
         .card:nth-child(4) { animation-delay: 0.6s; }
+        .card:nth-child(5) { animation-delay: 0.7s; } /* Nueva App */
+        .card:nth-child(6) { animation-delay: 0.8s; } /* Nueva App */
 
         .icon-container {
             width: 70px;
@@ -364,6 +367,7 @@
     </div>
 
     <div class="app-grid">
+        
         <a href="https://alexander78598745.github.io/GuardianLab-ATM/" class="card js-tilt" target="_blank">
             <div class="icon-container"><i class="fa-solid fa-shield-halved"></i></div>
             <h2>Guardian Lab</h2>
@@ -391,6 +395,21 @@
             <p>Seguimiento de partido en vivo, goles y minutos jugados.</p>
             <span class="status-btn">Acceder</span>
         </a>
+
+        <a href="https://alexander78598745.github.io/Informes-GuardianLab-ATM/" class="card js-tilt" target="_blank">
+            <div class="icon-container"><i class="fa-solid fa-file-contract"></i></div>
+            <h2>GuardianLab Informes</h2>
+            <p>Informes semestrales y seguimiento de objetivos de rendimiento.</p>
+            <span class="status-btn">Acceder</span>
+        </a>
+
+        <a href="https://alexander78598745.github.io/AgendaKeepers/" class="card js-tilt" target="_blank">
+            <div class="icon-container"><i class="fa-solid fa-calendar-days"></i></div>
+            <h2>AgendaKeepers</h2>
+            <p>Agenda integral: control de partidos, entrenamientos y reuniones.</p>
+            <span class="status-btn">Acceder</span>
+        </a>
+
     </div>
 
     <script>
@@ -428,14 +447,14 @@
         setInterval(updateClock, 1000); 
         updateClock();
 
-        // PWA: INSTALACIÓN Y SERVICE WORKER
+        // PWA SERVICE WORKER
         let deferredPrompt;
         const installBtn = document.getElementById('install-btn');
 
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
                 navigator.serviceWorker.register('./sw.js')
-                    .then(reg => console.log('SW registrado', reg))
+                    .then(reg => console.log('SW ok'))
                     .catch(err => console.log('SW error', err));
             });
         }
@@ -453,8 +472,9 @@
                 deferredPrompt = null;
             });
         });
+    </script>
 
-        // CLIMA
+    <script>
         function initWeather() {
             const timeoutID = setTimeout(() => {
                 getWeatherFromApi(40.45, -3.86, "Majadahonda (Defecto)");
@@ -502,9 +522,9 @@
                 document.getElementById('weather-temp').innerText = "--";
             }
         }
-        
         initWeather();
     </script>
+    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.0/vanilla-tilt.min.js"></script>
     <script>
         VanillaTilt.init(document.querySelectorAll(".js-tilt"), {
